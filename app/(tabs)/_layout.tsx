@@ -23,7 +23,6 @@ const Layout = () => {
             position: "absolute",
             borderTopLeftRadius: 20,
             borderTopRightRadius: 20,
-            zIndex: 10,
           },
           tabBarShowLabel: false,
           tabBarItemStyle: {
@@ -31,7 +30,6 @@ const Layout = () => {
             alignItems: "center",
             backgroundColor: "transparent",
             height: 72,
-            zIndex: 10,
           },
         }}
       >
