@@ -1,12 +1,15 @@
-import React, { useCallback, useRef } from "react";
-import { Pressable, Text, TextInput, View } from "react-native";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { FlatList, Pressable, Text, TextInput, View } from "react-native";
 import Svg, { G, Path } from "react-native-svg";
 
 import ScreenView from "@/components/ScreenView";
 import { BottomSheetModal, BottomSheetView } from "@gorhom/bottom-sheet";
+import useFetch from "@/hooks/useFetch";
+import { getCoffeeCategories } from "@/services/coffeeApi";
+import CategoryTab from "@/components/CategoryTab";
 
 const SearchBar = () => (
-  <View className="bg-white rounded-xl px-3 flex-row items-center py-1.5 gap-1 shadow">
+  <View className="bg-[#f5f5f5] rounded-xl px-3 flex-row items-center py-1 gap-2">
     <Svg
       width="24px"
       height="24px"
@@ -32,12 +35,15 @@ const SearchBar = () => (
 );
 
 const index = () => {
+  const [activeTab, setActiveTab] = useState(0);
   const modalRef = useRef(null);
 
   const showModal = useCallback(() => {
     // @ts-ignore
     modalRef.current?.present();
   }, []);
+
+  const { data: categories } = useFetch(() => getCoffeeCategories());
 
   return (
     <>
@@ -60,6 +66,21 @@ const index = () => {
         </View>
 
         {/* categories */}
+        <FlatList
+          data={categories}
+          renderItem={({ item, index }) => (
+            <CategoryTab
+              title={item}
+              index={index}
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+            />
+          )}
+          ItemSeparatorComponent={() => <View className="w-3" />}
+          keyExtractor={(item, index) => index.toString()}
+          showsHorizontalScrollIndicator={false}
+          horizontal={true}
+        />
 
         {/* cards list */}
       </ScreenView>
@@ -67,7 +88,7 @@ const index = () => {
         ref={modalRef}
         backdropComponent={() => (
           <Pressable
-            className="flex-1 bg-[rgba(0,0,0,0.1)] duration-300 absolute top-0 left-0 w-full h-full"
+            className="flex-1 bg-[rgba(0,0,0,0.2)] duration-300 absolute top-0 left-0 w-full h-full"
             onPress={() => {
               // @ts-ignore
               modalRef.current?.close();

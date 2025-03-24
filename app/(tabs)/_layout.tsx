@@ -11,7 +11,7 @@ import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 
 const Layout = () => {
   return (
-    <GestureHandlerRootView>
+    <GestureHandlerRootView className="flex-1">
       <BottomSheetModalProvider>
         <Tabs
           screenOptions={{
@@ -21,7 +21,6 @@ const Layout = () => {
                 Dimensions.get("window").height -
                 (StatusBar.currentHeight || 0),
               height: 72,
-              shadowColor: "transparent",
               borderColor: "white",
               position: "absolute",
               borderTopLeftRadius: 20,
