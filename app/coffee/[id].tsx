@@ -5,7 +5,6 @@ import {
   Pressable,
   Image,
   ScrollView,
-  Button,
   TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
@@ -14,7 +13,8 @@ import ScreenView from "@/components/ScreenView";
 import useFetch from "@/hooks/useFetch";
 import { getCoffeeById } from "@/services/coffeeApi";
 import HeartIcon from "@/components/Icons/HeartIcon";
-import Svg, { Path } from "react-native-svg";
+import Svg, { G, Path } from "react-native-svg";
+import { addStoreItem } from "@/utils/store";
 
 const Coffee = () => {
   const { id } = useLocalSearchParams();
@@ -34,7 +34,7 @@ const Coffee = () => {
           {/* appbar */}
           <View className="h-[64px] flex-row items-center justify-between">
             <Pressable onPress={() => router.back()}>
-              <Svg width="28px" height="28px" viewBox="0 0 24 24" fill="none">
+              <Svg width="30px" height="30px" viewBox="0 0 24 24" fill="none">
                 <Path
                   d="M15 7L10 12L15 17"
                   stroke="#212121"
@@ -45,7 +45,24 @@ const Coffee = () => {
               </Svg>
             </Pressable>
             <Text className="text-xl font-bold">Details</Text>
-            <HeartIcon focused={false} size={24} />
+            <Pressable
+              onPress={async () => {
+                await addStoreItem(id.toString());
+                alert("saved to cart");
+              }}
+            >
+              <Svg height={24} width={24} viewBox="0 0 24 24" fill="none">
+                <G id="SVGRepo_iconCarrier">
+                  <Path
+                    d="M15.7 4C18.87 4 21 6.98 21 9.76C21 15.39 12.16 20 12 20C11.84 20 3 15.39 3 9.76C3 6.98 5.13 4 8.3 4C10.12 4 11.31 4.91 12 5.71C12.69 4.91 13.88 4 15.7 4Z"
+                    stroke={"#010101"}
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </G>
+              </Svg>
+            </Pressable>
           </View>
 
           {/* cover image */}
@@ -58,7 +75,9 @@ const Coffee = () => {
           {/* details */}
           <View className="border-b-[#eee] border-b py-4 gap-1">
             <Text className="font-bold text-2xl">{data?.name}</Text>
-            <Text className="text-tertiary">{data?.category}</Text>
+            <Text className="text-tertiary text-base font-medium">
+              {data?.category}
+            </Text>
           </View>
           <View className="py-3 gap-4">
             <Text className="font-semibold text-xl">Description</Text>
@@ -78,7 +97,9 @@ const Coffee = () => {
                   } items-center p-3 rounded-xl`}
                 >
                   <Text
-                    className={`${size == 0 ? "text-active" : "text-black"}`}
+                    className={`${
+                      size == 0 ? "text-active" : "text-black"
+                    } font-medium`}
                   >
                     S
                   </Text>
@@ -91,7 +112,9 @@ const Coffee = () => {
                   } items-center p-3 rounded-xl`}
                 >
                   <Text
-                    className={`${size == 1 ? "text-active" : "text-black"}`}
+                    className={`${
+                      size == 1 ? "text-active" : "text-black"
+                    } font-medium`}
                   >
                     M
                   </Text>
@@ -104,7 +127,9 @@ const Coffee = () => {
                   } items-center p-3 rounded-xl`}
                 >
                   <Text
-                    className={`${size == 2 ? "text-active" : "text-black"}`}
+                    className={`${
+                      size == 2 ? "text-active" : "text-black"
+                    } font-medium`}
                   >
                     L
                   </Text>
@@ -126,7 +151,7 @@ const Coffee = () => {
               onPress={() => alert("add to cart")}
               className="flex-1 bg-active h-[54px] justify-center items-center rounded-2xl"
             >
-              <Text className="text-white">Buy Now</Text>
+              <Text className="text-white font-semibold text-lg">Buy Now</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
