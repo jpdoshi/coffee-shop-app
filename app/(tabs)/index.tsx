@@ -18,7 +18,7 @@ import CategoryTab from "@/components/CategoryTab";
 import CoffeeCard from "@/components/CoffeeCard";
 
 const SearchBar = ({ setSearchQuery }: any) => (
-  <View className="bg-[#f5f5f5] rounded-xl px-3 flex-row items-center py-1 gap-2">
+  <View className="bg-white shadow rounded-xl px-3 flex-row items-center py-1 gap-2">
     <Svg
       width="24px"
       height="24px"
@@ -132,7 +132,9 @@ const index = () => {
           )}
           {!coffeeLoading && !coffeeError && coffeeData && (
             <FlatList
-              data={coffeeData}
+              data={coffeeData.filter((item: any) =>
+                item.name.toLowerCase().includes(searchQuery.toLowerCase())
+              )}
               renderItem={({ item }) => <CoffeeCard {...item} />}
               keyExtractor={(item, index) => index.toString()}
               numColumns={2}
@@ -142,7 +144,7 @@ const index = () => {
                 paddingRight: 10,
                 marginBottom: 10,
               }}
-              className="-px-5 mb-8"
+              className="-px-5 mb-4"
               showsVerticalScrollIndicator={false}
               scrollEnabled={false}
             />

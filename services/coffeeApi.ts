@@ -10,6 +10,15 @@ export const getCoffeeCategories = async () => {
   }
 };
 
+export const getCoffeeById = async (_id: string) => {
+  try {
+    const coffeeData = await axios.get(`${endpoint}/coffee/${_id}`);
+    return coffeeData?.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export const getCoffeeByCategory = async (category: string) => {
   try {
     const coffeeData = await axios.get(

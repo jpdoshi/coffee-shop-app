@@ -5,10 +5,11 @@ module.exports = {
   presets: [require("nativewind/preset")],
   theme: {
     extend: {
+      fontFamily: "Sora",
       colors: {
         primary: {
           bg: "#F9F2ED",
-          light: "#F9F2ED",
+          light: "#fafafa",
         },
         active: "#C67C4E",
         inactive: "#EDD6C8",
