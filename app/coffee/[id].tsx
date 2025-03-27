@@ -24,7 +24,7 @@ const Coffee = () => {
   const { data, loading, error } = useFetch(() => getCoffeeById(id.toString()));
 
   return (
-    <ScreenView ignoreTabBar>
+    <ScreenView>
       {loading ? (
         <ActivityIndicator size={"large"} className="mt-10 justify-center" />
       ) : error ? (
@@ -32,7 +32,7 @@ const Coffee = () => {
       ) : (
         <ScrollView showsVerticalScrollIndicator={false}>
           {/* appbar */}
-          <View className="h-[64px] flex-row items-center justify-between">
+          <View className="h-[64px] flex-row items-center justify-between mx-5">
             <Pressable onPress={() => router.back()}>
               <Svg width="30px" height="30px" viewBox="0 0 24 24" fill="none">
                 <Path
@@ -66,20 +66,22 @@ const Coffee = () => {
           </View>
 
           {/* cover image */}
-          <Image
-            source={{ uri: data?.imageUrl }}
-            className="w-full aspect-[4/3] rounded-3xl"
-            resizeMode="cover"
-          />
+          <View className="mx-5">
+            <Image
+              source={{ uri: data?.imageUrl }}
+              className="w-full aspect-[4/3] rounded-3xl shadow-lg shadow-primary-shadow"
+              resizeMode="cover"
+            />
+          </View>
 
           {/* details */}
-          <View className="border-b-[#eee] border-b py-4 gap-1">
+          <View className="border-b-[#eee] border-b py-4 gap-1 mx-5">
             <Text className="font-bold text-2xl">{data?.name}</Text>
             <Text className="text-tertiary text-base font-medium">
               {data?.category}
             </Text>
           </View>
-          <View className="py-3 gap-4">
+          <View className="py-3 gap-4 mx-5">
             <Text className="font-semibold text-xl">Description</Text>
             <Text className="text-tertiary text-base leading-normal tracking-normal">
               {data?.description}
@@ -93,12 +95,14 @@ const Coffee = () => {
               <Pressable onPress={() => setSize(0)} className="w-[30%]">
                 <View
                   className={`border ${
-                    size == 0 ? "border-active bg-primary-bg" : "border-[#ddd]"
+                    size == 0
+                      ? "border-primary-color bg-primary-light"
+                      : "border-[#ddd] bg-white"
                   } items-center p-3 rounded-xl`}
                 >
                   <Text
                     className={`${
-                      size == 0 ? "text-active" : "text-black"
+                      size == 0 ? "text-primary-color" : "text-black"
                     } font-medium`}
                   >
                     S
@@ -108,12 +112,14 @@ const Coffee = () => {
               <Pressable onPress={() => setSize(1)} className="w-[30%]">
                 <View
                   className={`border ${
-                    size == 1 ? "border-active bg-primary-bg" : "border-[#ddd]"
+                    size == 1
+                      ? "border-primary-color bg-primary-light"
+                      : "border-[#ddd] bg-white"
                   } items-center p-3 rounded-xl`}
                 >
                   <Text
                     className={`${
-                      size == 1 ? "text-active" : "text-black"
+                      size == 1 ? "text-primary-color" : "text-black"
                     } font-medium`}
                   >
                     M
@@ -123,12 +129,14 @@ const Coffee = () => {
               <Pressable onPress={() => setSize(2)} className="w-[30%]">
                 <View
                   className={`border ${
-                    size == 2 ? "border-active bg-primary-bg" : "border-[#ddd]"
+                    size == 2
+                      ? "border-primary-color bg-primary-light"
+                      : "border-[#ddd] bg-white"
                   } items-center p-3 rounded-xl`}
                 >
                   <Text
                     className={`${
-                      size == 2 ? "text-active" : "text-black"
+                      size == 2 ? "text-primary-color" : "text-black"
                     } font-medium`}
                   >
                     L
@@ -139,17 +147,28 @@ const Coffee = () => {
           </View>
 
           {/* pricing */}
-          <View className="mt-safe flex-row items-start gap-8">
+          <View className="mt-safe flex-row items-start gap-8 mx-5">
             <View className="flex-col gap-1 px-3">
               <Text className="text-tertiary font-medium">Price</Text>
-              <Text className="font-bold text-xl text-active">
+              <Text className="font-bold text-xl text-primary-color">
                 $ {(data?.price + size * 0.15).toFixed(2)}
               </Text>
             </View>
             <TouchableOpacity
               activeOpacity={0.5}
-              onPress={() => alert("add to cart")}
-              className="flex-1 bg-active h-[54px] justify-center items-center rounded-2xl"
+              onPress={() =>
+                router.push({
+                  pathname: "/order",
+                  params: {
+                    id,
+                    name: data?.name,
+                    imageUrl: data?.imageUrl,
+                    price: data?.price + size * 0.15,
+                    category: data?.category,
+                  },
+                })
+              }
+              className="flex-1 bg-primary-color h-[54px] justify-center items-center rounded-2xl shadow-lg shadow-primary-shadow"
             >
               <Text className="text-white font-semibold text-lg">Buy Now</Text>
             </TouchableOpacity>

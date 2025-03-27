@@ -15,8 +15,8 @@ const CategoryTab = ({ title, index, activeTab, setActiveTab }: Props) => {
         //@ts-ignore
         setActiveTab(index);
       }}
-      className={`shadow rounded-xl px-3 py-1.5 ${
-        activeTab == index ? "bg-active" : "bg-white"
+      className={`border border-[#eee] rounded-xl px-3 py-1.5 ${
+        activeTab == index ? "bg-primary-color" : "bg-white"
       }`}
     >
       <Text

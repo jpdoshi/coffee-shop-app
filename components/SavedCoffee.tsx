@@ -6,12 +6,12 @@ import useFetch from "@/hooks/useFetch";
 import { getCoffeeById } from "@/services/coffeeApi";
 import Svg, { Path } from "react-native-svg";
 
-const SavedCoffee = ({ id, setSaved }: any) => {
-  const { data } = useFetch(() => getCoffeeById(id));
+const SavedCoffee = ({ id, saved, setSaved }: any) => {
+  const { data } = useFetch(() => getCoffeeById(id), saved);
 
   return (
     <Link href={`/coffee/${id}`}>
-      <View className="flex-row w-full items-center justify-between p-2 bg-white rounded-2xl shadow-lg shadow-gray-300">
+      <View className="flex-row w-full items-center justify-between p-2 bg-white rounded-2xl border border-[#eee] shadow shadow-primary-shadow">
         <View className="flex-row items-center gap-4">
           <Image
             source={{ uri: data?.imageUrl }}
@@ -24,7 +24,7 @@ const SavedCoffee = ({ id, setSaved }: any) => {
             <Text className="text-base text-tertiary font-medium">
               {data?.category}
             </Text>
-            <Text className="text-active font-bold mt-2">
+            <Text className="text-primary-color font-bold mt-2">
               $ {data?.price + 1 * 0.15}
             </Text>
           </View>

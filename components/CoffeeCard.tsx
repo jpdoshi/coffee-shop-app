@@ -10,10 +10,10 @@ const CoffeeCard = ({ _id, name, imageUrl, category, price }: any) => {
       asChild
     >
       <TouchableOpacity className="w-[50%]">
-        <View className="p-2 bg-white shadow-lg shadow-gray-300 rounded-3xl">
+        <View className="p-2 bg-white rounded-2xl shadow-lg shadow-primary-shadow">
           <Image
             source={{ uri: imageUrl }}
-            className="rounded-2xl aspect-square w-full"
+            className="rounded-xl aspect-square w-full"
           />
           <View className="px-1 py-2">
             <Text className="text-lg font-bold leading-tight" numberOfLines={1}>

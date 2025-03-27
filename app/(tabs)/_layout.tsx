@@ -46,7 +46,7 @@ const Layout = () => {
                     <HomeIcon size={22} focused={focused} />
                   </View>
                   <View
-                    className={`h-1 w-3 bg-active rounded-full ${
+                    className={`h-1 w-3 bg-primary-color rounded-full ${
                       focused ? "opacity-100" : "opacity-0"
                     }`}
                   />
@@ -65,7 +65,7 @@ const Layout = () => {
                     <HeartIcon size={24} focused={focused} />
                   </View>
                   <View
-                    className={`h-1 w-3 bg-active rounded-full ${
+                    className={`h-1 w-3 bg-primary-color rounded-full ${
                       focused ? "opacity-100" : "opacity-0"
                     }`}
                   />
@@ -84,7 +84,7 @@ const Layout = () => {
                     <BagIcon size={24} focused={focused} />
                   </View>
                   <View
-                    className={`h-1 w-3 bg-active rounded-full ${
+                    className={`h-1 w-3 bg-primary-color rounded-full ${
                       focused ? "opacity-100" : "opacity-0"
                     }`}
                   />
@@ -103,7 +103,7 @@ const Layout = () => {
                     <BellIcon size={24} focused={focused} />
                   </View>
                   <View
-                    className={`h-1 w-3 bg-active rounded-full ${
+                    className={`h-1 w-3 bg-primary-color rounded-full ${
                       focused ? "opacity-100" : "opacity-0"
                     }`}
                   />

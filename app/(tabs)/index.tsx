@@ -18,7 +18,7 @@ import CategoryTab from "@/components/CategoryTab";
 import CoffeeCard from "@/components/CoffeeCard";
 
 const SearchBar = ({ setSearchQuery }: any) => (
-  <View className="bg-white shadow rounded-xl px-3 flex-row items-center py-1 gap-2">
+  <View className="bg-white border border-[#eee] shadow-md shadow-primary-shadow rounded-xl px-3 flex-row items-center py-1 gap-2">
     <Svg
       width="24px"
       height="24px"
@@ -71,7 +71,7 @@ const index = () => {
       <ScreenView>
         <ScrollView showsVerticalScrollIndicator={false}>
           {/* top section */}
-          <View className="py-6">
+          <View className="py-6 mx-5">
             <Text className="text-tertiary">Location</Text>
             <Pressable
               className="flex-row items-center mb-4"
@@ -118,7 +118,7 @@ const index = () => {
             keyExtractor={(item, index) => index.toString()}
             showsHorizontalScrollIndicator={false}
             horizontal={true}
-            className="-mx-5 mb-5"
+            className="mb-5"
           />
 
           {/* cards list */}
@@ -144,11 +144,12 @@ const index = () => {
                 paddingRight: 10,
                 marginBottom: 10,
               }}
-              className="-px-5 mb-4"
+              className="px-5 mb-4"
               showsVerticalScrollIndicator={false}
               scrollEnabled={false}
             />
           )}
+          <View className="h-[72px]" />
         </ScrollView>
       </ScreenView>
       <BottomSheetModal

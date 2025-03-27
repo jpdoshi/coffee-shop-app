@@ -21,7 +21,7 @@ const liked = () => {
     <>
       <ScreenView>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <View className="h-[64px] flex-row items-center justify-between">
+          <View className="h-[64px] flex-row items-center justify-between mx-5">
             <Text className="text-xl font-bold">Saved Coffee</Text>
             <Pressable
               onPress={async () => {
@@ -40,10 +40,15 @@ const liked = () => {
               </Svg>
             </Pressable>
           </View>
-          <View className="flex-col gap-4">
+          <View className="flex-col gap-2 mx-5 pb-4">
             {saved && saved.length > 0 ? (
               saved.map((id: string, index: number) => (
-                <SavedCoffee key={index} id={id} setSaved={setSaved} />
+                <SavedCoffee
+                  key={index}
+                  id={id}
+                  saved={saved}
+                  setSaved={setSaved}
+                />
               ))
             ) : (
               <View className="h-[50vh] justify-center items-center gap-2">
