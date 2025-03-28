@@ -22,7 +22,7 @@ const liked = () => {
       <ScreenView>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View className="h-[64px] flex-row items-center justify-between mx-5">
-            <Text className="text-xl font-bold">Saved Coffee</Text>
+            <Text className="text-2xl font-bold">Saved Coffee</Text>
             <Pressable
               onPress={async () => {
                 const items = await getSavedItems();
