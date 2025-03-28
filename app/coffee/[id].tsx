@@ -12,7 +12,6 @@ import { useLocalSearchParams, useRouter } from "expo-router/build/hooks";
 import ScreenView from "@/components/ScreenView";
 import useFetch from "@/hooks/useFetch";
 import { getCoffeeById } from "@/services/coffeeApi";
-import HeartIcon from "@/components/Icons/HeartIcon";
 import Svg, { G, Path } from "react-native-svg";
 import { addStoreItem } from "@/utils/store";
 

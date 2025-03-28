@@ -5,6 +5,7 @@ import { Link } from "expo-router";
 import useFetch from "@/hooks/useFetch";
 import { getCoffeeById } from "@/services/coffeeApi";
 import Svg, { Path } from "react-native-svg";
+import priceConstants from "@/constants/price";
 
 const SavedCoffee = ({ id, saved, setSaved }: any) => {
   const { data } = useFetch(() => getCoffeeById(id), saved);
@@ -25,7 +26,7 @@ const SavedCoffee = ({ id, saved, setSaved }: any) => {
               {data?.category}
             </Text>
             <Text className="text-primary-color font-bold mt-2">
-              $ {data?.price + 1 * 0.15}
+              $ {data?.price + 1 * priceConstants.priceFactor}
             </Text>
           </View>
         </View>

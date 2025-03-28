@@ -10,6 +10,7 @@ import React, { useState } from "react";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import Svg, { G, Path } from "react-native-svg";
 import ScreenView from "@/components/ScreenView";
+import priceConstants from "@/constants/price";
 
 const Order = () => {
   const { id, name, category, imageUrl, price } = useLocalSearchParams();
@@ -67,25 +68,21 @@ const Order = () => {
                 setCount((prevCount) => (prevCount > 1 ? prevCount - 1 : 1))
               }
             >
-              <View className="rounded-full p-2 h-[24px] w-[24px] bg-white shadow-sm">
-                <Text className="font-medium h-[24px] w-[24px] translate-x-[2px] text-2xl -translate-y-3">
-                  -
-                </Text>
+              <View className="rounded-full size-8 bg-white border border-[#eee] justify-center items-center shadow-sm shadow-primary-shadow">
+                <Text className="font-medium text-2xl">-</Text>
               </View>
             </Pressable>
             <Text className="text-lg font-bold">{count}</Text>
             <Pressable onPress={() => setCount((prevCount) => prevCount + 1)}>
-              <View className="rounded-full p-2 h-[24px] w-[24px] bg-white shadow-sm shadow-primary-shadow">
-                <Text className="font-medium h-[24px] w-[24px] text-lg translate-x-[1px] -translate-y-[8px]">
-                  +
-                </Text>
+              <View className="rounded-full size-8 bg-white border border-[#eee] justify-center items-center shadow-sm shadow-primary-shadow">
+                <Text className="font-medium text-lg">+</Text>
               </View>
             </Pressable>
           </View>
         </View>
         <View className="w-full h-2 bg-primary-bg" />
         <View className="py-6 mx-5">
-          <View className="bg-white border border-[#eee] shadow-lg shadow-primary-shadow py-4 px-6 rounded-2xl flex-row justify-between items-center">
+          <View className="bg-white border border-[#eee] shadow shadow-primary-shadow py-4 px-6 rounded-2xl flex-row justify-between items-center">
             <Text className="text-base font-semibold">1 Discount Applies</Text>
             <Svg width="16px" height="16px" viewBox="0 0 1024 1024">
               <Path
@@ -113,13 +110,13 @@ const Order = () => {
             <View className="flex-row justify-between items-center">
               <Text className="font-medium">Discount (5%)</Text>
               <Text className="font-semibold">
-                $ {(Number(price) * count * (5 / 100)).toFixed(1)}
+                $ {(Number(price) * count * priceConstants.discount).toFixed(1)}
               </Text>
             </View>
           </View>
         </View>
         <View className="px-5 mt-safe gap-4">
-          <View className="p-3 px-5 bg-white border border-[#eee] shadow-lg shadow-primary-shadow rounded-2xl flex-row items-center justify-between">
+          <View className="p-3 px-5 bg-white border border-[#eee] shadow shadow-primary-shadow rounded-2xl flex-row items-center justify-between">
             <View className="flex-col gap-1">
               <Text className="text-lg font-bold">Cash/Wallet</Text>
               <Text className="text-primary-color font-bold">
@@ -127,7 +124,7 @@ const Order = () => {
                 {(
                   Number(price) * count +
                   Number(price) / 2 -
-                  Number(price) * count * (5 / 100)
+                  Number(price) * count * priceConstants.discount
                 ).toFixed(1)}
                 0
               </Text>

@@ -8,9 +8,9 @@ module.exports = {
       fontFamily: "Sora",
       colors: {
         primary: {
-          bg: "#fafafa",
+          bg: "#fff",
           light: "#F9F2ED",
-          shadow: "rgba(0, 0, 0, 0.15)",
+          shadow: "rgba(0, 0, 0, 0.25)",
           color: "#C67C4E",
         },
         tertiary: "#666",

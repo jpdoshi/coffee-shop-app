@@ -118,7 +118,6 @@ const index = () => {
             keyExtractor={(item, index) => index.toString()}
             showsHorizontalScrollIndicator={false}
             horizontal={true}
-            className="mb-5"
           />
 
           {/* cards list */}
@@ -144,7 +143,7 @@ const index = () => {
                 paddingRight: 10,
                 marginBottom: 10,
               }}
-              className="px-5 mb-4"
+              className="p-5"
               showsVerticalScrollIndicator={false}
               scrollEnabled={false}
             />
