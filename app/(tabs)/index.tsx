@@ -141,7 +141,7 @@ const index = () => {
                 justifyContent: "flex-start",
                 gap: 10,
                 paddingRight: 10,
-                marginBottom: 10,
+                marginBottom: 12,
               }}
               className="p-5"
               showsVerticalScrollIndicator={false}
