@@ -3,7 +3,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 export const getSavedItems = async () => {
   try {
     const data = await AsyncStorage.getItem("saved");
-    // console.log("store.ts: data: " + data);
 
     if (data) {
       return JSON.parse(data);
@@ -24,7 +23,11 @@ export const addStoreItem = async (id: string) => {
     } else {
       data = [];
     }
-    if (!data?.includes(id)) data?.push(id);
+
+    if (!data?.includes(id)) {
+      // @ts-ignore
+      data?.push(id);
+    }
 
     await AsyncStorage.setItem("saved", JSON.stringify(data));
   } catch (err) {
@@ -40,6 +43,28 @@ export const removeStoreItem = async (id: string) => {
     data = data.filter((item: string) => item !== id);
 
     await AsyncStorage.setItem("saved", JSON.stringify(data));
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getUserDetails = async () => {
+  try {
+    let data: any = await AsyncStorage.getItem("user");
+
+    if (data) {
+      return JSON.parse(data);
+    }
+
+    return null;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const setUserDetails = async (userData: any) => {
+  try {
+    await AsyncStorage.setItem("saved", JSON.stringify(userData));
   } catch (err) {
     console.log(err);
   }

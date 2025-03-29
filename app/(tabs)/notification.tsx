@@ -59,7 +59,7 @@ const account = () => {
           <Pressable
             onPress={async () => {
               alert("logout successful!");
-              router.push("/login");
+              router.push("/");
             }}
           >
             <View className="p-2 px-4 bg-red-600 rounded-lg">

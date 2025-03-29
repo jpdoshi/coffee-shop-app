@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   ActivityIndicator,
   FlatList,
@@ -16,6 +16,8 @@ import useFetch from "@/hooks/useFetch";
 import { getCoffeeByCategory, getCoffeeCategories } from "@/services/coffeeApi";
 import CategoryTab from "@/components/CategoryTab";
 import CoffeeCard from "@/components/CoffeeCard";
+import { getUserDetails } from "@/utils/store";
+import { useRouter } from "expo-router";
 
 const SearchBar = ({ setSearchQuery }: any) => (
   <View className="bg-white border border-[#eee] shadow-md shadow-primary-shadow rounded-xl px-3 flex-row items-center py-1 gap-2">
@@ -49,6 +51,7 @@ const index = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const modalRef = useRef(null);
+  const router = useRouter();
 
   const showModal = useCallback(() => {
     // @ts-ignore
@@ -65,6 +68,18 @@ const index = () => {
     () => getCoffeeByCategory(activeTab == -1 ? "All" : categories[activeTab]),
     activeTab
   );
+
+  useEffect(() => {
+    const checkLogin = async () => {
+      const userData = await getUserDetails();
+
+      if (!userData) {
+        router.navigate("/login");
+      }
+    };
+
+    checkLogin();
+  }, []);
 
   return (
     <>
