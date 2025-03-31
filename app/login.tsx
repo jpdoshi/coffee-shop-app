@@ -7,10 +7,15 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import ScreenView from "@/components/ScreenView";
 import Svg, { Circle, Path } from "react-native-svg";
 import { useRouter } from "expo-router";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { app } from "@/firebaseConfig";
+import { setUserDetails } from "@/utils/store";
+
+import { reloadAsync } from "expo-updates";
 
 const login = () => {
   const router = useRouter();
@@ -36,7 +41,18 @@ const login = () => {
     setErrors(_errors);
 
     if (email.trim() && password.trim()) {
-      // check if user exists with firebase
+      const auth = getAuth(app);
+      signInWithEmailAndPassword(auth, email, password)
+        .then(async (userCredential) => {
+          const userDetails = userCredential.user;
+
+          console.log(userDetails);
+          await setUserDetails(userDetails);
+          await reloadAsync();
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
     }
   };
 

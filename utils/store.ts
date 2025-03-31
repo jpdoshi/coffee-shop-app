@@ -64,7 +64,15 @@ export const getUserDetails = async () => {
 
 export const setUserDetails = async (userData: any) => {
   try {
-    await AsyncStorage.setItem("saved", JSON.stringify(userData));
+    await AsyncStorage.setItem("user", JSON.stringify(userData));
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const removeKey = async (key: string) => {
+  try {
+    await AsyncStorage.removeItem(key);
   } catch (err) {
     console.log(err);
   }

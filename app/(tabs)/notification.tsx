@@ -1,10 +1,23 @@
 import ScreenView from "@/components/ScreenView";
+import { getUserDetails, removeKey } from "@/utils/store";
 import { useRouter } from "expo-router";
-import React from "react";
+import { reloadAsync } from "expo-updates";
+import React, { useEffect, useState } from "react";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import Svg, { Circle, Path } from "react-native-svg";
 
 const account = () => {
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    const retrieveEmail = async () => {
+      const userDetails = await getUserDetails();
+      setEmail(userDetails.email);
+    };
+
+    retrieveEmail();
+  }, []);
+
   const router = useRouter();
   return (
     <ScreenView>
@@ -52,14 +65,16 @@ const account = () => {
                 Signed in
               </Text>
               <Text className="text-base font-semibold" numberOfLines={1}>
-                jpdoshi2811@gmail.com
+                {email}
               </Text>
             </View>
           </View>
           <Pressable
             onPress={async () => {
+              await removeKey("user");
               alert("logout successful!");
-              router.push("/");
+              router.push("/login");
+              await reloadAsync();
             }}
           >
             <View className="p-2 px-4 bg-red-600 rounded-lg">
