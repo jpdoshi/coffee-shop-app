@@ -92,7 +92,9 @@ const index = () => {
               className="flex-row items-center mb-4"
               onPress={showModal}
             >
-              <Text className="font-semibold text-lg">Rajkot, Gujarat</Text>
+              <Text className="font-semibold tracking-wide text-base">
+                V.J. Modi School, 150ft Ring Road
+              </Text>
               <Svg width="20px" height="20px" viewBox="0 0 24 24" fill="none">
                 <G id="SVGRepo_iconCarrier">
                   <Path

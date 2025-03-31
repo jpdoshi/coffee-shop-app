@@ -46,7 +46,6 @@ const login = () => {
         .then(async (userCredential) => {
           const userDetails = userCredential.user;
 
-          console.log(userDetails);
           await setUserDetails(userDetails);
           await reloadAsync();
         })

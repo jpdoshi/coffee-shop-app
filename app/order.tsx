@@ -11,6 +11,8 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import Svg, { G, Path } from "react-native-svg";
 import ScreenView from "@/components/ScreenView";
 import priceConstants from "@/constants/price";
+import { getUserDetails } from "@/utils/store";
+import { createOrder } from "@/services/coffeeApi";
 
 const Order = () => {
   const { id, name, category, imageUrl, price } = useLocalSearchParams();
@@ -39,9 +41,9 @@ const Order = () => {
         <View className="pb-6 border-b border-[#e0e0e0] mx-5">
           <Text className="text-xl font-bold">Delivery Address</Text>
           <View className="flex-col gap-1 py-4">
-            <Text className="text-lg font-semibold">Jl. Kpg Sutoyo</Text>
+            <Text className="text-lg font-semibold">V.J. Modi School</Text>
             <Text className="font-medium text-tertiary">
-              Kpg Sutoyo No. 620, Bilzen, Tanjungbalai
+              V.J. Modi School, 150ft Ring Road
             </Text>
           </View>
           <View className="flex-row gap-2">
@@ -140,7 +142,19 @@ const Order = () => {
           </View>
           <TouchableOpacity
             activeOpacity={0.5}
-            onPress={() => alert("Order successful!")}
+            onPress={async () => {
+              const { email } = await getUserDetails();
+              await createOrder(
+                email,
+                id.toString(),
+                Number(price) * count +
+                  Number(price) / 2 -
+                  Number(price) * count * priceConstants.discount,
+                count
+              );
+              alert("Order successful!");
+              router.navigate("/cart");
+            }}
           >
             <View className="py-4 bg-primary-color items-center rounded-2xl justify-center shadow-lg shadow-primary-shadow">
               <Text className="text-white font-semibold text-lg">

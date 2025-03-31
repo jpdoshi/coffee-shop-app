@@ -45,7 +45,6 @@ const signup = () => {
         async (userCredentials) => {
           const userDetails = userCredentials.user;
 
-          console.log(userDetails);
           await setUserDetails(userDetails);
           await reloadAsync();
         }
