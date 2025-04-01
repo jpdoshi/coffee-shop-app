@@ -3,7 +3,7 @@ import { Dimensions, StatusBar, View } from "react-native";
 import { Tabs } from "expo-router";
 
 import HomeIcon from "@/components/Icons/HomeIcon";
-import BellIcon from "@/components/Icons/BellIcon";
+import AccountIcon from "@/components/Icons/AccountIcon";
 import HeartIcon from "@/components/Icons/HeartIcon";
 import BagIcon from "@/components/Icons/BagIcon";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -93,14 +93,14 @@ const Layout = () => {
             }}
           />
           <Tabs.Screen
-            name="notification"
+            name="account"
             options={{
               headerShown: false,
-              title: "Notifications",
+              title: "Account",
               tabBarIcon: ({ focused }) => (
                 <View className="flex-col items-center">
                   <View className="h-[28px]">
-                    <BellIcon size={24} focused={focused} />
+                    <AccountIcon size={24} focused={focused} />
                   </View>
                   <View
                     className={`h-1 w-3 bg-primary-color rounded-full ${

@@ -23,9 +23,9 @@ const account = () => {
     <ScreenView>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View className="h-[64px] flex-row items-center mx-5">
-          <Text className="text-2xl font-bold">Notifications</Text>
+          <Text className="text-2xl font-bold">Account</Text>
         </View>
-        <Text className="mx-5 text-tertiary font-medium">Account</Text>
+        <Text className="mx-5 text-tertiary font-medium">Your Profile</Text>
         <View className="flex-row justify-between items-center gap-2 mx-5 py-5 border-b border-[#ddd]">
           <View className="flex-row gap-3 items-center">
             <Svg height={40} width={40} viewBox="0 0 32 32">
@@ -64,7 +64,10 @@ const account = () => {
               <Text className="text-sm leading-tight text-primary-color font-medium">
                 Signed in
               </Text>
-              <Text className="text-base font-semibold" numberOfLines={1}>
+              <Text
+                className="text-lg leading-tight mt-1 font-semibold"
+                numberOfLines={1}
+              >
                 {email}
               </Text>
             </View>
@@ -81,6 +84,9 @@ const account = () => {
               <Text className="font-semibold text-white">Logout</Text>
             </View>
           </Pressable>
+        </View>
+        <View className="justify-center items-center mt-64">
+          <Text className="text-tertiary text-lg">No recent notifications</Text>
         </View>
       </ScrollView>
     </ScreenView>

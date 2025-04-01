@@ -37,9 +37,9 @@ export const getOrdersByEmail = async (email: string) => {
 
     for (let order of ordersData?.data) {
       const coffeeData = await axios.get(`${endpoint}/coffee/${order.item}`);
-      const { price, count, _id } = order;
+      const { price, count, _id, address } = order;
 
-      orders.push({ ...coffeeData?.data, price, count, orderId: _id });
+      orders.push({ ...coffeeData?.data, price, count, orderId: _id, address });
     }
     return orders;
   } catch (err) {
